@@ -1,0 +1,81 @@
+# Decrease volume
+"pamixer --allow-boost -d 10; xsetroot -name "vol. $(pamixer --get-volume)%""
+   m:0x0 + c:122
+
+# Decrease volume
+"pamixer --allow-boost -i 10; xsetroot -name "vol. $(pamixer --get-volume)%""
+   m:0x0 + c:123
+
+# xKill
+"xkill"
+   m:0xc + c:53
+
+# Super + Tab
+#"skippy-xd"
+#   m:0x40 + c:23
+
+#screenshot ( PtrScr )
+"gnome-screenshot"
+   m:0x0 + c:107
+
+#screenShot (shft + PtrScr )
+"gnome-screenshot -a"
+   m:0x3 + c:107
+
+#screenShot (ctrl + PtrScr )
+"gnome-screenshot -w"
+   m:0x1 + c:107
+
+#screenShot ( alt + PtrScr )
+"gnome-screenshot -i"
+   m:0x8 + c:107
+
+# media play/pause
+"cmus-remote -u"
+   m:0x0 + c:172
+
+# media next
+"cmus-remote -n"
+   m:0x0 + c:171
+
+# media prev
+"cmus-remote -r"
+   m:0x0 + c:173
+
+# media stop
+"cmus-remote -s"
+   m:0x0 + c:174
+
+#Negative colors
+"xcalib -invert -alter"
+   m:0xc + c:31
+
+# Ctrl + Alt + Left
+"xdotool mousemove_relative -- -20   0"
+   m:0xc + c:113
+# Ctrl + Alt + Right
+"xdotool mousemove_relative --  20   0"
+   m:0xc + c:114
+# Ctrl + Alt + Up
+"xdotool mousemove_relative --   0 -20"
+   m:0xc + c:111
+# Ctrl + Alt + Down
+"xdotool mousemove_relative --   0  20"
+   m:0xc + c:116
+
+# Ctrl + Alt + Shift + Left
+"xdotool mousemove_relative -- -10   0"
+   m:0xd + c:113
+# Ctrl + Alt + Shift + Right
+"xdotool mousemove_relative --  10   0"
+   m:0xd + c:114
+# Ctrl + Alt + Shift + Up
+"xdotool mousemove_relative --   0 -10"
+   m:0xd + c:111
+# Ctrl + Alt + Shift + Down
+"xdotool mousemove_relative --   0  10"
+   m:0xd + c:116
+
+# Ctrl + Alt + Enter
+"xdotool click 1"
+   m:0xc + c:36

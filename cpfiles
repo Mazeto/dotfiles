@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+cp ~/.bashrc .
+cp ~/.bash_profile .
+cp ~/.xbindkeysrc .
+
+cp ~/.config/sway/config .
+cp ~/.config/mc/ini .
+cp ~/.config/mpv/mpv.conf .
+cp ~/.config/tmux.conf .
+cp ~/.config/tmux.statusbar.sh .
+cp ~/.config/weston.ini .
+cp ~/.config/pcmanfm/default/pcmanfm.conf .
