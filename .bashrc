@@ -34,6 +34,20 @@ export LESS="--RAW-CONTROL-CHARS"
 ## FUNCTIONS ##
 ###############
 
+trans() {
+    pushd . > /dev/null;
+    cd /mnt/sda2/prg/trans > /dev/null;
+    ./translate.awk pt:en $1;
+    popd > /dev/null;
+}
+
+trad() {
+    pushd . > /dev/null;
+    cd /mnt/sda2/prg/trans > /dev/null;
+    ./translate.awk en:pt $1;
+    popd > /dev/null;
+}
+
 ytw() {
     a=$(echo $1 | sed -e "s/https:\/\/www.youtube.com\/watch?v=//g");
     mpv --ytdl-format=18 ytdl://$a;
