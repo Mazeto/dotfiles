@@ -1,12 +1,13 @@
 #!/usr/bin/bash
-cp ./bashrc          ~/.bashrc
-cp ./bash_profile    ~/.bashrc
-cp ./xbindkeysrc     ~/.xbindkeysrc
+cp ./vimrc               ~/.vimrc
+cp ./bashrc              ~/.bashrc
+cp ./bash_profile        ~/.bash_profile
+cp ./xbindkeysrc         ~/.xbindkeysrc
 
-cp ./config          ~/.config/sway/config
-cp ./ini             ~/.config/mc/ini
-cp ./mpv.conf        ~/.config/mpv/mpv.conf
-cp ./tmux.conf       ~/.config/tmux.conf
-cp ./tmux.status.bar ~/.config/tmux.statusbar.sh
-cp ./weston.ini      ~/.config/weston.ini
-cp ./pcmanfm.conf    ~/.config/pcmanfm/default/pcmanfm.conf
+cp ./config              ~/.config/sway/config
+cp ./ini                 ~/.config/mc/ini
+cp ./mpv.conf            ~/.config/mpv/mpv.conf
+cp ./tmux.conf           ~/.config/tmux.conf
+cp ./tmux.statusbar.bar  ~/.config/tmux.statusbar.sh
+cp ./weston.ini          ~/.config/weston.ini
+cp ./pcmanfm.conf        ~/.config/pcmanfm/default/pcmanfm.conf
