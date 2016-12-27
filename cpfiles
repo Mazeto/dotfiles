@@ -1,12 +1,12 @@
 #!/usr/bin/bash
+cp ~/.vimrc .
 cp ~/.bashrc .
-cp ~/.bash_profile .
 cp ~/.xbindkeysrc .
-
-cp ~/.config/sway/config .
+cp ~/.bash_profile .
 cp ~/.config/mc/ini .
-cp ~/.config/mpv/mpv.conf .
 cp ~/.config/tmux.conf .
-cp ~/.config/tmux.statusbar.sh .
 cp ~/.config/weston.ini .
+cp ~/.config/sway/config .
+cp ~/.config/mpv/mpv.conf .
+cp ~/.config/tmux.statusbar.sh .
 cp ~/.config/pcmanfm/default/pcmanfm.conf .

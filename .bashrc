@@ -6,10 +6,12 @@
 export PS1=">"
 export PS2=""
 export PATH=".:$PATH"
-export EDITOR="joe"
+export EDITOR="vim"
 #export TERM="linux"
 export MAIL="ricardo.mazeto@live.com"
 export MAILDIR="~/mail/ricardo.mazeto.live.folder/"
+stty stop undef
+stty start undef
 
 export LESS_TERMCAP_mb=$(tput bold; tput setaf 5) # green
 export LESS_TERMCAP_md=$(tput bold; tput setaf 3) # cyan
@@ -32,10 +34,15 @@ export LESS="--RAW-CONTROL-CHARS"
 ## FUNCTIONS ##
 ###############
 
+ytw() {
+    a=$(echo $1 | sed -e "s/https:\/\/www.youtube.com\/watch?v=//g");
+    mpv --ytdl-format=18 ytdl://$a;
+}
+
 gh() {
     # gen new ssh key and add it to ssh agent
     # https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
-    
+
     # add ssh key to github account
     # https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
 
@@ -67,15 +74,15 @@ gh() {
         if [ ! -d ".git" ]; then
             echo "Initializing local git repo";
             git init;
-        fi;            
+        fi;
 
         curl -u "$username:$token" \
              https://api.github.com/user/repos \
              -d '{"name": "'$reponame'"}' > /dev/null 2>&1;
-        
+
         echo "Syncing";
-        git remote add origin git@github.com:$username/$reponame.git > /dev/null 2>&1;
-        git push -u origin master > /dev/null 2>&1;
+        git remote add origin git@github.com:$username/$reponame.git;
+        git push -u origin master;
         echo "Done.";
     fi;
 }
@@ -85,29 +92,29 @@ note() {
     elif [ $# >= 1 ]; then echo $1 >> ~/.notes;
         echo "note saved";
     fi;
-}
+ }
 
-12bits.color.theme() {
-#    if [ $TERM == "linux" ]; then
+8bitsct() {
+    if [ $TERM == "linux" ]; then
         # 0 1 2 3 . 4 5 6 7 . 8 9 a b . c d e f
-        sudo printf '\033]P0201010'; # black
-        sudo printf '\033]P1a01010'; # red
-        sudo printf '\033]P2408010'; # green
-        sudo printf '\033]P3c08010'; # yellow
-        sudo printf '\033]P4402080'; # blue
-        sudo printf '\033]P5802080'; # magenta
-        sudo printf '\033]P6208080'; # cyan
-        sudo printf '\033]P7e0b0a0'; # white
+        sudo printf '\033]P0000000'; # black
+        sudo printf '\033]P1a00000'; # red
+        sudo printf '\033]P2208040'; # green
+        sudo printf '\033]P3c08000'; # yellow
+        sudo printf '\033]P4004080'; # blue
+        sudo printf '\033]P5602080'; # magenta
+        sudo printf '\033]P6008080'; # cyan
+        sudo printf '\033]P7c0a080'; # white
         # 6 8 c
-        sudo printf '\033]P8202020'; # black
-        sudo printf '\033]P9e04040'; # red
-        sudo printf '\033]PA70b020'; # green
-        sudo printf '\033]PBf0b020'; # yellow
-        sudo printf '\033]PC2020f0'; # blue
-        sudo printf '\033]PDf020f0'; # magenta
-        sudo printf '\033]PE60a0c0'; # cyan
-        sudo printf '\033]PFf0d0b0'; # white
-#    fi;
+        sudo printf '\033]P8402040'; # black
+        sudo printf '\033]P9e02040'; # red
+        sudo printf '\033]PA80c040'; # green
+        sudo printf '\033]PBe0c000'; # yellow
+        sudo printf '\033]PC4060c0'; # blue
+        sudo printf '\033]PDa04080'; # magenta
+        sudo printf '\033]PE60c080'; # cyan
+        sudo printf '\033]PFe0c040'; # white
+    fi;
 }
 
 dark.warm.theme() {
@@ -132,13 +139,16 @@ dark.warm.theme() {
 }
 
 minit() {
-    12bits.color.theme;
-    sudo cpupower frequency-set -u 800Mhz;
+    8bitsct;
     sudo setfont /usr/share/kbd/consolefonts/ter-112n.psf.gz;
+    sudo cpupower frequency-set -u 800Mhz;
     sudo mount -w /dev/sda2 /mnt/sda2;
-    sudo wifi-menu;
+    sudo mount -w /dev/sr0 /mnt/cdr;
+    sudo swapon ~/.swapfile;
     xset r rate 200 30;
+    sudo wifi-menu;
     xbindkeys;
+    xset -b;
 }
 
 wn() {
@@ -149,8 +159,11 @@ wn() {
 ## ALIASES ##
 #############
 
+alias cls="clear"
+alias rmd="recordmydesktop"
 alias ytdl="youtube-dl -i"
 alias gdb="gdb --quiet"
+alias vol="pamixer --set-volume"
 alias bhad="bindechexascii"
 alias cgrep="grep --color=always"
 alias chrome="google-chrome-stable"
@@ -160,3 +173,4 @@ alias pacman="pacman --color=always"
 alias transmission="transmission-daemon; transmission-remote-cli"
 alias irc="irssi --config ~/.config/irssi.cfg --config ~/.config/irssi.config --config ~/.config/irrsi.startup --config ~/.config/irssi.theme.cfg -c irc.freenode.net -n mazeto -w `cat ~/.irssi/pw`"
 alias mail="mutt -F ~/.config/muttrc"
+alias mocp="mocp -T green_theme"

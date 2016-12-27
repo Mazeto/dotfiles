@@ -81,7 +81,7 @@ editor_filesize_threshold=64M
 editor_stop_format_chars=-+*\\,.;:&>
 mcview_eof=
 ignore_ftp_chattr_errors=true
-skin=dark
+skin=gotar
 
 filepos_max_saved_entries=1024
 
@@ -90,12 +90,12 @@ message_visible=0
 keybar_visible=0
 xterm_title=1
 output_lines=0
-command_prompt=0
+command_prompt=1
 menubar_visible=1
 free_space=1
 horizontal_split=0
 vertical_equal=1
-left_panel_size=113
+left_panel_size=56
 horizontal_equal=1
 top_panel_size=1
 
