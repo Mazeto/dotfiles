@@ -45,7 +45,7 @@ if [ $bat_caps -lt $bat_low ];then
   bat_col=$whi_red;
 fi;
 
-if [ $bat_caps -eq 100 ];then
+if [ $bat_caps -eq 100 ] && [ $bat_stat != "Discharging" ];then
   bat_col=$whi_gre;
 fi;
 
