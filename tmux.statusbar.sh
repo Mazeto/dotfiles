@@ -41,7 +41,7 @@ if [ $tmp -ge $tmp_hot ];then
   tmp_col=$whi_red;
 fi;
 
-if [ $bat_caps -lt $bat_low ];then
+if [ $bat_caps -lt $bat_low ] && [ $bat_stat != "Charging" ];then
   bat_col=$whi_red;
 fi;
 

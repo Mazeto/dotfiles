@@ -34,6 +34,39 @@ export LESS="--RAW-CONTROL-CHARS"
 ## FUNCTIONS ##
 ###############
 
+proxy() {
+    if [ $# -eq 1 ];then
+
+        if [ ! $proxy_n ];then
+            export proxy_n=1;
+        fi;
+
+        if [ $1 == "on" ];then
+            proxy_url=$(sed "$(echo $proxy_n)q;d" ~/.config/proxy);
+            export http_proxy="socks5://$proxy_url";
+            export https_proxy=$http_proxy;
+            export ftp_proxy=$http_proxy;
+            echo "proxy set: $http_proxy";
+        fi;
+
+        if [ $1 == "off" ];then
+            unset http_proxy;
+            unset https_proxy;
+            unset ftp_proxy;
+            echo "proxy unset";
+        fi;
+
+        if [ $1 == "toggle" ];then
+            ((proxy_n++));
+            if [ $proxy_n -gt $(cat ~/.config/proxy | wc -l) ];then
+                proxy_n=1;
+            fi;
+            proxy on;
+        fi;
+
+      fi;
+}
+
 trans() {
     pushd . > /dev/null;
     cd /mnt/sda2/prg/trans > /dev/null;
@@ -131,33 +164,12 @@ note() {
     fi;
 }
 
-dark.warm.theme() {
-    #if [ $TERM = "linux" ]; then
-        sudo printf '\033]P01a1813';# black
-        sudo printf '\033]P1991f1f';# red
-        sudo printf '\033]P25c991f';# green
-        sudo printf '\033]P3997b1f';# yellow
-        sudo printf '\033]P41f3e99';# blue
-        sudo printf '\033]P5991f70';# magenta
-        sudo printf '\033]P61f9999';# cyan
-        sudo printf '\033]P7ccbc95';# white
-        sudo printf '\033]P8333026';# black
-        sudo printf '\033]P9e62e2e';# red
-        sudo printf '\033]PA8ae62e';# green
-        sudo printf '\033]PBe6b82e';# yellow
-        sudo printf '\033]PC2e5ce6';# blue
-        sudo printf '\033]PDe62ea9';# magenta
-        sudo printf '\033]PE2ee6e6';# cyan
-        sudo printf '\033]PFe6d7ab';# white
-    #fi;
-}
-
 minit() {
     8bitsct;
     sudo setfont /usr/share/kbd/consolefonts/ter-112n.psf.gz;
     sudo cpupower frequency-set -u 800Mhz;
     sudo mount -w /dev/sda2 /mnt/sda2;
-    sudo mount -w /dev/sr0 /mnt/cdr;
+    sudo mount /dev/sr0 /mnt/cdr;
     sudo swapon ~/.swapfile;
     xset r rate 200 30;
     sudo wifi-menu;
